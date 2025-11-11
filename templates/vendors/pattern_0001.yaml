@@ -1,0 +1,38 @@
+meta:
+  seed_patterns:
+  - (?i)MSDS|SDS|물질안전보건자료
+  - (?i)\bH\d{3}\b
+  - (?i)\bP\d{3}\b
+  - (?m)^\s*(회사명|제조사|공급사)\s*[:：]
+  - (?m)^\s*주소\s*[:：]
+  - \bAA\d{5}-\d{10}\b
+tables:
+  engines:
+  - camelot:lattice:line_scale=40
+  - tabula
+  - pdfplumber
+  fallback: block4
+  header_aliases:
+    name:
+    - (?i)구성성분|성분|물질명|관용명|chemical|name
+    cas:
+    - (?i)cas\s*no\.?|cas\s*번호|\bcas\b|식별번호
+    conc:
+    - (?i)대표?함유율|함유율|함유량|농도|content|concentration|conc
+sec2:
+  hazard_labels:
+  - 유해·위험문구
+  - 유해/위험문구
+  - Hazard statements
+  precaution_labels:
+  - 예방조치문구
+  - Precautionary statements
+  - 예방
+sec15:
+  product_header: (?:^|\n)\s*PRODUCT\s*[:：]
+  bullet_product_header: (?:^|\n)\s*[•●]\s*.*?PRODUCT\s*[:：]
+  split_tokens:
+  - ','
+  - ·
+  - ㆍ
+  - ;

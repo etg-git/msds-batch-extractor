@@ -99,7 +99,7 @@ def extract_regulatory_items(
     master_labels: List[str],
     min_score: int = 82
 ) -> pd.DataFrame:
-
+    
     cands = _split_by_vendor(sec15_text, vendor_cfg)
     if not cands:
         cands = _fallback_regex(sec15_text)

@@ -1,28 +1,22 @@
-# --- Core app ---
-streamlit==1.39.0
-pandas==2.2.2
-numpy==1.26.4
-python-dotenv==1.0.1
-PyYAML==6.0.2
+# --- 웹앱 & 데이터 ---
+streamlit>=1.36,<2
+pandas>=2.1,<3
+numpy==1.26.4          # 프로젝트 호환 선호 버전
 
-# --- PDF/Text extraction ---
-pymupdf==1.24.9           # fitz
-pdfminer.six==20231228
-pdfplumber==0.11.4
+# --- PDF 텍스트/표 추출 ---
+PyMuPDF>=1.23,<1.25    # fitz
+pdfminer.six>=20221105
+pdfplumber>=0.11
 
-# --- Table extraction (multi-backend) ---
-camelot-py==0.11.0        # OpenCV 필요
-opencv-python==4.10.0.84
-tabula-py==2.9.0          # Java 필요(시스템에 OpenJDK 설치)
+# --- 표 추출(선택: 표가 많은 MSDS 권장) ---
+camelot-py[cv]>=0.11   # OpenCV 의존 (lattice)
+tabula-py>=2.9         # 자바 필요
 
-# --- Images/utility ---
-Pillow==10.4.0
+# --- OCR 폴백(스캔본용, 선택) ---
+pdf2image>=1.17
+pillow>=10.3
+pytesseract>=0.3.10
 
-rapidfuzz>=3.9.0
-
-# 참고:
-# - Camelot lattice에는 시스템 Ghostscript가 필요합니다.
-#   Ubuntu: sudo apt install ghostscript
-#   macOS:  brew install ghostscript
-#   Windows: winget install -e --id ArtifexSoftware.Ghostscript
-# - Tabula는 Java 필요: OpenJDK 11+ 권장.
+# --- 유틸 ---
+rapidfuzz>=3.6
+PyYAML>=6.0.1

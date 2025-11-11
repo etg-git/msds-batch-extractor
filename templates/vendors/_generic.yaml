@@ -16,8 +16,26 @@ anchors:
   16_other_information:
     - "^\\s*16[\\.\\):]?\\s*(기타\\s*(?:참고)?\\s*사항|Other\\s*information)"
 tables:
-  fallback: "block4"
+  header_aliases:
+    name:
+      - "(?i)구성성분|성분|물질명|화학물질명|관용명|name|chemical"
+    cas:
+      - "(?i)cas\\s*no\\.?|cas\\s*번호|\\bcas\\b|식별번호"
+    conc:
+      - "(?i)대표?함유율|함유율|함유량|농도|content|concentration|conc|함유량\\(\\%\\)"
+    alias:
+      - "(?i)관용명|이명\\(관용명\\)|이명"
 sec15:
   split_tokens: [",",";","·","•","ㆍ","∙","‧","・","/","｜","|"]
   product_header: ["PRODUCT","항목","대상물질"]
   bullet_product_header: ["•","·"]
+
+detect:
+  supplier_aliases: []
+  doc_signatures: ["(?i)물질안전보건자료","(?i)MSDS|SDS"]
+
+concentration:
+  default_unit: "%"
+  range_regex: "(?<!\\d)(\\d+(?:\\.\\d+)?)\\s*[~\\-–]\\s*(\\d+(?:\\.\\d+)?)(?:\\s*[%％]?)"
+  cmp_regex: "(<=|>=|<|>|≤|≥)\\s*(\\d+(?:\\.\\d+)?)(?:\\s*[%％]?)"
+  single_regex: "(?<!\\d)(\\d+(?:\\.\\d+)?)(?:\\s*[%％]?)(?!\\d)"
