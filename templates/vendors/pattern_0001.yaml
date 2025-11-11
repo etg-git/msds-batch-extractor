@@ -1,38 +1,78 @@
-meta:
-  seed_patterns:
-  - (?i)MSDS|SDS|물질안전보건자료
-  - (?i)\bH\d{3}\b
-  - (?i)\bP\d{3}\b
-  - (?m)^\s*(회사명|제조사|공급사)\s*[:：]
-  - (?m)^\s*주소\s*[:：]
-  - \bAA\d{5}-\d{10}\b
-tables:
-  engines:
-  - camelot:lattice:line_scale=40
-  - tabula
-  - pdfplumber
-  fallback: block4
-  header_aliases:
-    name:
-    - (?i)구성성분|성분|물질명|관용명|chemical|name
-    cas:
-    - (?i)cas\s*no\.?|cas\s*번호|\bcas\b|식별번호
-    conc:
-    - (?i)대표?함유율|함유율|함유량|농도|content|concentration|conc
-sec2:
-  hazard_labels:
-  - 유해·위험문구
-  - 유해/위험문구
-  - Hazard statements
-  precaution_labels:
-  - 예방조치문구
-  - Precautionary statements
-  - 예방
-sec15:
-  product_header: (?:^|\n)\s*PRODUCT\s*[:：]
-  bullet_product_header: (?:^|\n)\s*[•●]\s*.*?PRODUCT\s*[:：]
-  split_tokens:
-  - ','
-  - ·
-  - ㆍ
-  - ;
+name: pattern_0001
+
+detect:
+  doc_signatures:
+    - "(?i)(MSDS|SDS|물질안전보건자료)"
+  seed_keywords:
+    - "(?i)composition|ingredients|성분|함유량"
+    - "(?i)physical|chemical|물리|화학적\\s*특성"
+    - "(?i)regulatory|규제\\s*정보|법적\\s*규제"
+
+section3:
+  engines_order: ["table", "block_ttb", "block_ltr"]
+  guards:
+    cas_regex: "\\b\\d{2,7}-\\d{2}-\\d\\b"
+    forbid_cas_fragments: ["7732-18"]
+  concentration:
+    default_unit: "%"
+    range_regex: "(?<!\\d)(\\d+(?:\\.\\d+)?)\\s*[~\\-–]\\s*(\\d+(?:\\.\\d+)?)(?:\\s*%?)"
+    cmp_regex: "(<=|>=|<|>|≤|≥)\\s*(\\d+(?:\\.\\d+)?)(?:\\s*%?)"
+    single_regex: "(?<!\\d)(\\d+(?:\\.\\d+)?)(?:\\s*%?)(?!\\d)"
+    representative: { mode: "midpoint_if_range_else_value" }
+  table:
+    engines: ["camelot:lattice:line_scale=40", "tabula", "pdfplumber"]
+    header_aliases:
+      name:  ["(?i)구성성분|성분|물질명|관용명|name|chemical"]
+      cas:   ["(?i)cas\\s*no\\.?|cas\\s*번호|\\bcas\\b|식별번호"]
+      conc:  ["(?i)대표?함유율|함유율|함유량|농도|content|concentration|conc"]
+    stop_rows_regex: "^\\s*표기되지\\s*않은\\s*구성성분"
+  block_ltr:
+    line_patterns:
+      - "(?P<name>[^\\t,\\n]{2,}?)\\s*[\\t,|]+\\s*(?P<cas>\\d{2,7}-\\d{2}-\\d)\\s*[\\t,|]+\\s*(?P<conc>[^\\n%]{1,30}%?)"
+    max_join_lines: 3
+    stop_regexes: ["^\\s*표기되지\\s*않은\\s*구성성분"]
+  block_ttb:
+    vertical_fields:
+      order: ["name","cas","conc"]
+      field_regex:
+        name: "^\\s*(?!CAS\\b)[^\\n]{2,}$"
+        cas:  "\\b\\d{2,7}-\\d{2}-\\d\\b"
+        conc: "(?:%|~|\\d|<=|>=|≤|≥)"
+    group_by: { max_gap_lines: 3 }
+    stop_regexes: ["^\\s*표기되지\\s*않은\\s*구성성분"]
+
+section9:
+  engines_order: ["table", "block_ltr", "block_ttb"]
+  keys: ["appearance","state","color","odor","odor_threshold","pH","melting_point","boiling_point","flash_point",
+         "evaporation_rate","flammability","explosive_limits","vapor_pressure","solubility","vapor_density",
+         "relative_density","logP_ko_w","auto_ignition","decomposition_temp","viscosity","molecular_weight"]
+  aliases:
+    appearance: ["외관"]
+    state: ["성상","상태"]
+    color: ["색상","색"]
+    odor: ["냄새"]
+    odor_threshold: ["냄새역치"]
+    pH: ["pH","피에이치"]
+    melting_point: ["녹는점","어는점"]
+    boiling_point: ["비등점","끓는점","초기 끓는점과 끓는점 범위"]
+    flash_point: ["인화점"]
+    evaporation_rate: ["증발속도"]
+    flammability: ["인화성","가연성"]
+    explosive_limits: ["폭발 범위","상한/하한","폭발한계"]
+    vapor_pressure: ["증기압"]
+    solubility: ["용해도"]
+    vapor_density: ["증기밀도"]
+    relative_density: ["비중","밀도"]
+    logP_ko_w: ["n-옥탄올/물분배계수","logP"]
+    auto_ignition: ["자연발화온도"]
+    decomposition_temp: ["분해온도"]
+    viscosity: ["점도"]
+    molecular_weight: ["분자량"]
+  table:
+    engines: ["camelot:lattice:line_scale=40", "tabula", "pdfplumber"]
+  block_ltr:
+    kv_patterns:
+      - "^(?P<key>[^\\n:]{1,40})\\s*[:：]\\s*(?P<val>.+)$"
+  block_ttb:
+    key_first: true
+    join_max_lines: 2
