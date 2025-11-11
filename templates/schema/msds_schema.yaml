@@ -1,0 +1,72 @@
+# 벤더 설정 스키마(참고용 문서) - 실제 검증은 코드에서 수행
+vendor: "string (필수)"
+detect:
+  supplier_aliases: ["string"]      # 회사/브랜드명
+  logo_keywords: ["string"]         # 로고/슬로건 키워드
+  doc_signatures: ["regex"]         # 문서 시그니처(정규식)
+
+text_normalize:
+  replace:                          # 순차 적용
+    - {pattern: "regex", repl: "string"}
+  collapse_spaces: true
+  unify_hyphen: true
+  to_ascii_kdigits: true
+
+sections:
+  header_strip_first_line: true
+  anchors:                          # 섹션별 헤더 정규식 (리스트)
+    identification: ["regex"]
+    hazards: ["regex"]
+    composition: ["regex"]
+    first_aid: ["regex"]
+    firefighting: ["regex"]
+    accidental_release: ["regex"]
+    handling_storage: ["regex"]
+    exposure_controls: ["regex"]
+    physical_chemical: ["regex"]
+    stability_reactivity: ["regex"]
+    toxicological: ["regex"]
+    ecological: ["regex"]
+    disposal: ["regex"]
+    transport: ["regex"]
+    regulatory: ["regex"]
+    other_information: ["regex"]
+
+composition:
+  trust_table_over_lines: true
+  table:
+    header_aliases:
+      name: ["string"]              # 열 식별 후보(자연어 포함-부분일치)
+      cas:  ["string"]
+      conc: ["string"]
+    header_row_idx: 0               # 헤더가 2~3행이면 지정
+    merge_cells: true
+    drop_null_tokens: ["-", "자료없음", "N/A"]
+  lines:
+    cas_regex: "\\b\\d{2,7}-\\d{2}-\\d\\b"
+    concentration_patterns:
+      - {id: "range_comma",   regex: "regex", unit_default: "%"}
+      - {id: "range_dash",    regex: "regex", unit_default: "%"}
+      - {id: "comparator",    regex: "regex", unit_default: "%"}
+      - {id: "single_value",  regex: "regex", unit_default: null}
+      - {id: "loose_percent", regex: "regex", unit_default: "%", clamp_0_100: true}
+    cas_fragment_filter: true
+  postprocess:
+    unit_default_when_missing: "%"
+    rep_value: "mean_of_range_or_value"
+    round_digits: 6
+
+metadata:
+  msds_no_regex: "regex"
+  product_name_labels: ["string"]
+  supplier_labels: ["string"]
+  revision_date_regex: "regex"
+  version_regex: "regex"
+
+ocr_hints:
+  prefer_visual_order: false
+  min_len_ratio_vs_auto: 0.85
+
+slicing:
+  start_markers: ["regex"]
+  end_markers: ["regex"]

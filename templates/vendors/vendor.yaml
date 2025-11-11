@@ -1,0 +1,36 @@
+meta:
+  vendor_keywords:
+  - 주식회사 대정티씨 울산공장
+anchors:
+  1_identification:
+  - (?m)^\s*1\s*[\.\):]?\s*화학제품과\s*회사에\s*관한\s*정보\b
+  2_hazards:
+  - (?m)^\s*2\s*[\.\):]?\s*유해\s*위험성\b
+  3_composition:
+  - (?m)^\s*3\s*[\.\):]?\s*구성성분의\s*명칭\s*및\s*함유량\b
+  9_physical_chemical:
+  - (?m)^\s*9\s*[\.\):]?\s*물리\s*화학적\s*특성\b
+  15_regulatory:
+  - (?m)^\s*15\s*[\.\):]?\s*법적\s*규제현황\b
+  16_other_information:
+  - (?m)^\s*16\s*[\.\):]?\s*기타\s*참고사항\b
+tables:
+  fallback: block4
+sec15:
+  split_tokens:
+  - ','
+  - ;
+  - ·
+  - •
+  - ㆍ
+  - ∙
+  - ‧
+  - ・
+  - /
+  - ｜
+  - '|'
+  product_header:
+  - PRODUCT
+  bullet_product_header:
+  - •
+  - ·

@@ -1,0 +1,56 @@
+vendor: "_base"
+
+text_normalize:
+  replace:
+    - {pattern: "[\u00A0]", repl: " "}
+  collapse_spaces: true
+  unify_hyphen: true
+  to_ascii_kdigits: true
+
+sections:
+  header_strip_first_line: true
+  anchors:
+    identification: ["(?i)\\b1[\\.)]?\\s*(제품|화학제품|identification)"]
+    hazards: ["(?i)\\b2[\\.)]?\\s*(유해|위험|hazard)"]
+    composition: ["(?i)\\b3[\\.)]?\\s*(구성\\s*성분|성분|명칭\\s*및\\s*함유량|composition|ingredients?)"]
+    first_aid: ["(?i)\\b4[\\.)]?\\s*(응급조치|first[- ]?aid)"]
+    firefighting: ["(?i)\\b5[\\.)]?\\s*(화재|소화|fire[- ]?fighting)"]
+    accidental_release: ["(?i)\\b6[\\.)]?\\s*(누출|accidental\\s*release)"]
+    handling_storage: ["(?i)\\b7[\\.)]?\\s*(취급|저장|handling|storage)"]
+    exposure_controls: ["(?i)\\b8[\\.)]?\\s*(노출|개인\\s*보호|exposure\\s*controls?)"]
+    physical_chemical: ["(?i)\\b9[\\.)]?\\s*(물리|화학|physical|chemical)"]
+    stability_reactivity: ["(?i)\\b10[\\.)]?\\s*(안정성|반응성|stability|reactivity)"]
+    toxicological: ["(?i)\\b11[\\.)]?\\s*(독성|toxicological)"]
+    ecological: ["(?i)\\b12[\\.)]?\\s*(환경|ecological)"]
+    disposal: ["(?i)\\b13[\\.)]?\\s*(폐기|disposal)"]
+    transport: ["(?i)\\b14[\\.)]?\\s*(운송|transport)"]
+    regulatory: ["(?i)\\b15[\\.)]?\\s*(법적\\s*규제|regulatory)"]
+    other_information: ["(?i)\\b16[\\.)]?\\s*(기타|그\\s*밖|other\\s*information)"]
+
+composition:
+  trust_table_over_lines: true
+  table:
+    header_aliases:
+      name: ["화학물질명","성분명","품명","Substance","Component","Ingredient","Name"]
+      cas:  ["CAS","CAS No","CAS 번호","식별번호","EC No"]
+      conc: ["함유량","함유량(%)","농도","농도(%)","Concentration","Content","Wt%","Weight %"]
+    header_row_idx: 0
+    merge_cells: true
+    drop_null_tokens: ["자료없음","해당없음","-","N/A","Not available"]
+  lines:
+    cas_regex: "\\b\\d{2,7}-\\d{2}-\\d\\b"
+    concentration_patterns:
+      - {id: range_comma,   regex: ">=\\s*(\\d+(?:\\.\\d+)?)\\s*,\\s*<\\s*(\\d+(?:\\.\\d+)?)", unit_default: "%"}
+      - {id: range_dash,    regex: "(\\d+(?:\\.\\d+)?)\\s*(?:-|–|~|∼|to)\\s*(\\d+(?:\\.\\d+)?)\\s*(%|ppm|mg/m3)?", unit_default: "%"}
+      - {id: comparator,    regex: "(<=|>=|<|>)\\s*(\\d+(?:\\.\\d+)?)\\s*(%|ppm|mg/m3)?", unit_default: "%"}
+      - {id: single_value,  regex: "\\b(\\d+(?:\\.\\d+)?)\\s*(%|ppm|mg/m3)", unit_default: null}
+      - {id: loose_percent, regex: "\\b(\\d+(?:\\.\\d+)?)\\b", unit_default: "%", clamp_0_100: true}
+    cas_fragment_filter: true
+  postprocess:
+    unit_default_when_missing: "%"
+    rep_value: mean_of_range_or_value
+    round_digits: 6
+
+metadata:
+  product_name_labels: ["제품명","Product name","Product identifier","Trade name"]
+  supplier_labels: ["제조사","회사명","공급사","Supplier","Manufacturer","Company"]

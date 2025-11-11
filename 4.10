@@ -1,0 +1,134 @@
+Collecting numpy==2.*
+  Downloading numpy-2.3.4-cp312-cp312-win_amd64.whl.metadata (60 kB)
+Collecting pandas
+  Downloading pandas-2.3.3-cp312-cp312-win_amd64.whl.metadata (19 kB)
+Collecting scipy
+  Downloading scipy-1.16.3-cp312-cp312-win_amd64.whl.metadata (60 kB)
+Collecting scikit-learn
+  Downloading scikit_learn-1.7.2-cp312-cp312-win_amd64.whl.metadata (11 kB)
+Collecting matplotlib
+  Downloading matplotlib-3.10.7-cp312-cp312-win_amd64.whl.metadata (11 kB)
+Collecting opencv-python
+  Downloading opencv_python-4.12.0.88-cp37-abi3-win_amd64.whl.metadata (19 kB)
+Collecting python-dateutil>=2.8.2 (from pandas)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting pytz>=2020.1 (from pandas)
+  Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting tzdata>=2022.7 (from pandas)
+  Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting joblib>=1.2.0 (from scikit-learn)
+  Downloading joblib-1.5.2-py3-none-any.whl.metadata (5.6 kB)
+Collecting threadpoolctl>=3.1.0 (from scikit-learn)
+  Downloading threadpoolctl-3.6.0-py3-none-any.whl.metadata (13 kB)
+Collecting contourpy>=1.0.1 (from matplotlib)
+  Downloading contourpy-1.3.3-cp312-cp312-win_amd64.whl.metadata (5.5 kB)
+Collecting cycler>=0.10 (from matplotlib)
+  Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting fonttools>=4.22.0 (from matplotlib)
+  Downloading fonttools-4.60.1-cp312-cp312-win_amd64.whl.metadata (114 kB)
+Collecting kiwisolver>=1.3.1 (from matplotlib)
+  Downloading kiwisolver-1.4.9-cp312-cp312-win_amd64.whl.metadata (6.4 kB)
+Collecting packaging>=20.0 (from matplotlib)
+  Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting pillow>=8 (from matplotlib)
+  Downloading pillow-12.0.0-cp312-cp312-win_amd64.whl.metadata (9.0 kB)
+Collecting pyparsing>=3 (from matplotlib)
+  Downloading pyparsing-3.2.5-py3-none-any.whl.metadata (5.0 kB)
+Collecting numpy==2.*
+  Downloading numpy-2.2.6-cp312-cp312-win_amd64.whl.metadata (60 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas)
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Downloading pandas-2.3.3-cp312-cp312-win_amd64.whl (11.0 MB)
+   ---------------------------------------- 11.0/11.0 MB 20.8 MB/s  0:00:00
+Downloading scipy-1.16.3-cp312-cp312-win_amd64.whl (38.6 MB)
+   ---------------------------------------- 38.6/38.6 MB 25.0 MB/s  0:00:01
+Downloading scikit_learn-1.7.2-cp312-cp312-win_amd64.whl (8.7 MB)
+   ---------------------------------------- 8.7/8.7 MB 30.1 MB/s  0:00:00
+Downloading matplotlib-3.10.7-cp312-cp312-win_amd64.whl (8.1 MB)
+   ---------------------------------------- 8.1/8.1 MB 24.0 MB/s  0:00:00
+Downloading opencv_python-4.12.0.88-cp37-abi3-win_amd64.whl (39.0 MB)
+   ---------------------------------------- 39.0/39.0 MB 28.5 MB/s  0:00:01
+Downloading numpy-2.2.6-cp312-cp312-win_amd64.whl (12.6 MB)
+   ---------------------------------------- 12.6/12.6 MB 31.6 MB/s  0:00:00
+Downloading contourpy-1.3.3-cp312-cp312-win_amd64.whl (226 kB)
+Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Downloading fonttools-4.60.1-cp312-cp312-win_amd64.whl (2.3 MB)
+   ---------------------------------------- 2.3/2.3 MB 25.7 MB/s  0:00:00
+Downloading joblib-1.5.2-py3-none-any.whl (308 kB)
+Downloading kiwisolver-1.4.9-cp312-cp312-win_amd64.whl (73 kB)
+Downloading packaging-25.0-py3-none-any.whl (66 kB)
+Downloading pillow-12.0.0-cp312-cp312-win_amd64.whl (7.0 MB)
+   ---------------------------------------- 7.0/7.0 MB 14.4 MB/s  0:00:00
+Downloading pyparsing-3.2.5-py3-none-any.whl (113 kB)
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
+Downloading tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+Installing collected packages: pytz, tzdata, threadpoolctl, six, pyparsing, pillow, packaging, numpy, kiwisolver, joblib, fonttools, cycler, scipy, python-dateutil, opencv-python, contourpy, scikit-learn, pandas, matplotlib
+  Attempting uninstall: pytz
+    Found existing installation: pytz 2025.2
+    Uninstalling pytz-2025.2:
+      Successfully uninstalled pytz-2025.2
+  Attempting uninstall: tzdata
+    Found existing installation: tzdata 2025.2
+    Uninstalling tzdata-2025.2:
+      Successfully uninstalled tzdata-2025.2
+  Attempting uninstall: six
+    Found existing installation: six 1.17.0
+    Uninstalling six-1.17.0:
+      Successfully uninstalled six-1.17.0
+  Attempting uninstall: pyparsing
+    Found existing installation: pyparsing 3.2.5
+    Uninstalling pyparsing-3.2.5:
+      Successfully uninstalled pyparsing-3.2.5
+  Attempting uninstall: pillow
+    Found existing installation: pillow 10.4.0
+    Uninstalling pillow-10.4.0:
+      Successfully uninstalled pillow-10.4.0
+  Attempting uninstall: packaging
+    Found existing installation: packaging 24.2
+    Uninstalling packaging-24.2:
+      Successfully uninstalled packaging-24.2
+  Attempting uninstall: numpy
+    Found existing installation: numpy 1.26.4
+    Uninstalling numpy-1.26.4:
+      Successfully uninstalled numpy-1.26.4
+  Attempting uninstall: kiwisolver
+    Found existing installation: kiwisolver 1.4.9
+    Uninstalling kiwisolver-1.4.9:
+      Successfully uninstalled kiwisolver-1.4.9
+  Attempting uninstall: fonttools
+    Found existing installation: fonttools 4.60.1
+    Uninstalling fonttools-4.60.1:
+      Successfully uninstalled fonttools-4.60.1
+  Attempting uninstall: cycler
+    Found existing installation: cycler 0.12.1
+    Uninstalling cycler-0.12.1:
+      Successfully uninstalled cycler-0.12.1
+  Attempting uninstall: scipy
+    Found existing installation: scipy 1.16.3
+    Uninstalling scipy-1.16.3:
+      Successfully uninstalled scipy-1.16.3
+  Attempting uninstall: python-dateutil
+    Found existing installation: python-dateutil 2.9.0.post0
+    Uninstalling python-dateutil-2.9.0.post0:
+      Successfully uninstalled python-dateutil-2.9.0.post0
+  Attempting uninstall: opencv-python
+    Found existing installation: opencv-python 4.6.0.66
+    Uninstalling opencv-python-4.6.0.66:
+      Successfully uninstalled opencv-python-4.6.0.66
+  Attempting uninstall: contourpy
+    Found existing installation: contourpy 1.3.3
+    Uninstalling contourpy-1.3.3:
+      Successfully uninstalled contourpy-1.3.3
+  Attempting uninstall: pandas
+    Found existing installation: pandas 2.2.2
+    Uninstalling pandas-2.2.2:
+      Successfully uninstalled pandas-2.2.2
+  Attempting uninstall: matplotlib
+    Found existing installation: matplotlib 3.10.7
+    Uninstalling matplotlib-3.10.7:
+      Successfully uninstalled matplotlib-3.10.7
+
+Successfully installed contourpy-1.3.3 cycler-0.12.1 fonttools-4.60.1 joblib-1.5.2 kiwisolver-1.4.9 matplotlib-3.10.7 numpy-2.2.6 opencv-python-4.12.0.88 packaging-25.0 pandas-2.3.3 pillow-12.0.0 pyparsing-3.2.5 python-dateutil-2.9.0.post0 pytz-2025.2 scikit-learn-1.7.2 scipy-1.16.3 six-1.17.0 threadpoolctl-3.6.0 tzdata-2025.2

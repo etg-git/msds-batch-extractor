@@ -1,0 +1,23 @@
+meta:
+  vendor_keywords: ["generic"]
+anchors:
+  1_identification:
+    - "^\\s*1[\\.\\):]?\\s*(화학제품과\\s*회사에\\s*관한\\s*정보|제품\\s*(?:및)?\\s*회사\\s*식별|제품\\s*식별)"
+  2_hazards:
+    - "^\\s*2[\\.\\):]?\\s*(유해[·\\s]*위험성(?:의\\s*개요)?|유해성|위험성)"
+  3_composition:
+    - "^\\s*3[\\.\\):]?\\s*(구성\\s*성분|성분\\s*/?\\s*함유량|조성\\s*정보)"
+  9_physical_chemical:
+    - "^\\s*9[\\.\\):]?\\s*(물리[·\\s]*화학(?:적)?\\s*특성|물리적\\s*및\\s*화학적\\s*특성)"
+  14_transport:
+    - "^\\s*14[\\.\\):]?\\s*(운송(?:에\\s*관한)?\\s*정보|Transport\\s*information)"
+  15_regulatory:
+    - "^\\s*15[\\.\\):]?\\s*(법적?\\s*규제\\s*현황|규제\\s*정보|Regulatory\\s*(?:information|status))"
+  16_other_information:
+    - "^\\s*16[\\.\\):]?\\s*(기타\\s*(?:참고)?\\s*사항|Other\\s*information)"
+tables:
+  fallback: "block4"
+sec15:
+  split_tokens: [",",";","·","•","ㆍ","∙","‧","・","/","｜","|"]
+  product_header: ["PRODUCT","항목","대상물질"]
+  bullet_product_header: ["•","·"]
